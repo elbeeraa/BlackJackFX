@@ -5,49 +5,132 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.masanz.ut9.blackjackfx.HostConfigController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: #0b2b18; -fx-border-color: #d4af37; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.masanz.ut9.blackjackfx.HostConfigController">
+    <center>
+        <VBox alignment="CENTER" maxWidth="450.0" prefHeight="450.0" prefWidth="450.0" spacing="15.0" style="-fx-background-color: #104c26; -fx-border-color: #d4af37; -fx-border-radius: 15; -fx-background-radius: 15; -fx-border-width: 2;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
+            </padding>
+            <children>
+                <Label text="CREACIÓN DE LA SALA" textFill="#f9d976">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+                </Label>
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="NOMBRE DE LA SALA" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtnombresala" promptText="Inserta un nombre de sala..." style="-fx-background-radius: 10; -fx-padding: 8;" />
+                    </children>
+                </VBox>
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="NÚMERO DE JUGADORES (2-6)" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtnumerojugadores" maxWidth="100.0" prefHeight="33.0" prefWidth="69.0" style="-fx-background-radius: 10; -fx-padding: 8;" />
+                    </children>
+                </VBox>
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="TIPO DE SALA" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <HBox spacing="20.0">
+                            <children>
+                                <RadioButton fx:id="rbtPublico" mnemonicParsing="false" selected="true" text="Pública" textFill="WHITE">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="tipoGrupo" />
+                                    </toggleGroup>
+                                </RadioButton>
+                                <RadioButton fx:id="rbtPrivado" mnemonicParsing="false" text="Privada" textFill="WHITE" toggleGroup="$tipoGrupo" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox spacing="5.0" />
+                <VBox alignment="CENTER_LEFT" spacing="8.0">
+                    <children>
+                        <Label text="IMAGEN DE LA SALA" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                            <children>
+                        <ImageView fx:id="imagen" fitHeight="91.0" fitWidth="102.0" onMouseClicked="#cambiarImagen" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/imagen_defecto.png" />
+                           </image>
+                        </ImageView>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+            <BorderPane.margin>
+                <Insets top="20.0" />
+            </BorderPane.margin>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" spacing="30.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#cancelar" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #8b0000; -fx-text-fill: white; -fx-background-radius: 10;" text="CANCELAR">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#crearSala" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to bottom, #f4c453, #c58f22); -fx-text-fill: black; -fx-background-radius: 10;" text="CREAR SALA">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+    </bottom>
    <top>
-      <BorderPane prefHeight="148.0" prefWidth="600.0" style="-fx-background-color: #e4c732;" BorderPane.alignment="CENTER" />
-   </top>
-   <bottom>
-      <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
-            <Button graphicTextGap="9.0" mnemonicParsing="false" onAction="#crearSala" text="Crear sala" />
-         </children>
-      </HBox>
-   </bottom>
-   <center>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER_RIGHT">
-               <children>
-                  <Label text="Nombre sala:" />
-                  <Label text="Numero de jugadores:" />
-                  <Label text="Tipo:" />
-                  <Label text="Label" />
-               </children>
-               <HBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </HBox.margin>
-            </VBox>
-            <VBox alignment="CENTER_LEFT">
-               <children>
-                  <TextField />
-                  <TextField />
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" text="RadioButton" />
-                        <RadioButton mnemonicParsing="false" text="RadioButton" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/cartas.png" />
+               </image>
+            </ImageView>
+            <Label contentDisplay="CENTER" prefHeight="70.0" prefWidth="272.0" text="BLACKJACK" textFill="#f9d976">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+               <effect>
+                  <DropShadow height="11.0" offsetX="2.0" offsetY="3.0" radius="5.0" width="11.0" />
+               </effect>
+            </Label>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/cartas.png" />
+               </image>
+            </ImageView>
          </children>
       </HBox>
-   </center>
+   </top>
 </BorderPane>

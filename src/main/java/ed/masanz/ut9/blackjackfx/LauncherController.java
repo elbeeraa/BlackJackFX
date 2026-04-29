@@ -42,4 +42,14 @@ public class LauncherController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    void jugarSolitario(ActionEvent event) {
+
+    }
+
+    @FXML
+    void unirmeSala(ActionEvent event) {
+
+    }
 }
