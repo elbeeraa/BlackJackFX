@@ -46,16 +46,25 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="186.0" style="-fx-background-color: linear-gradient(to bottom, #f4c453, #c58f22); -fx-background-radius: 10;" text="UNIRME A SALA SELECCIONADA" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
             <Button mnemonicParsing="false" onAction="#crearSala" prefHeight="40.0" prefWidth="130.0" style="-fx-background-radius: 10; -fx-background-color: linear-gradient(to bottom, #428bca, #2b669a);" text="CREAR SALA" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
          </children>
       </HBox>

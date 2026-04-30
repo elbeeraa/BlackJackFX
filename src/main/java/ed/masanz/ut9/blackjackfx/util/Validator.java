@@ -13,7 +13,7 @@ public class Validator {
     }
 
     public static boolean hashNumber(TextField txtNumeroJugadores) {
-        if(txtNumeroJugadores == null || txtNumeroJugadores.getText().isEmpty()){
+        if(txtNumeroJugadores == nullgit a || txtNumeroJugadores.getText().isEmpty()){
             return false;
         }
         int numero = Integer.parseInt(txtNumeroJugadores.getText());
