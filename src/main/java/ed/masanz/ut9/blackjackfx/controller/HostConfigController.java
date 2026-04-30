@@ -1,14 +1,10 @@
-package ed.masanz.ut9.blackjackfx;
+package ed.masanz.ut9.blackjackfx.controller;
 
+import ed.masanz.ut9.blackjackfx.service.NavigationService;
+import ed.masanz.ut9.blackjackfx.util.Validator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -16,7 +12,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 
 public class HostConfigController {
 
@@ -39,6 +34,9 @@ public class HostConfigController {
     private TextField txtnumerojugadores;
 
     @FXML
+    private Label lblError;
+
+    @FXML
     void cambiarImagen(MouseEvent event) {
        //  el gemini me sugiere usar libreria FileChooser para que se abra archivos y Image para poder ver la imagen
         FileChooser fileChooser = new FileChooser();
@@ -56,23 +54,18 @@ public class HostConfigController {
 
     @FXML
     void cancelar(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ed/masanz/ut9/blackjackfx/launcher.fxml"));
-
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Scene scene = new Scene(root);
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        NavigationService.getInstance().navigateTo("launcher.fxml");
     }
 
     @FXML
     void crearSala(ActionEvent event) {
+
+        if(Validator.hashText(txtnombresala) && Validator.hashNumber(txtnumerojugadores)) {
+            NavigationService.getInstance().navigateTo("waiting_room.fxml");
+        } else {
+            lblError.setVisible(true);
+        }
+
         String nombreSala = txtnombresala.getText();
         int numeroJugadores = Integer.parseInt(txtnumerojugadores.getText());
         String tipoSala = rbtPrivado.isSelected() ? "Privada" : "Pública";

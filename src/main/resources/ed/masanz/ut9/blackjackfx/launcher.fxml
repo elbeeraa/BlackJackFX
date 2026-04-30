@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #0b2b18; -fx-border-color: #d4af37; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.masanz.ut9.blackjackfx.LauncherController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #0b2b18; -fx-border-color: #d4af37; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.masanz.ut9.blackjackfx.controller.LauncherController">
     <top>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
@@ -52,14 +52,22 @@
                         <Insets bottom="5.0" />
                     </VBox.margin>
                 </Label>
-                <TextField maxWidth="260.0" prefHeight="40.0" prefWidth="260.0" promptText="Escribe tu apodo..." style="-fx-background-radius: 20; -fx-padding: 10; -fx-background-color: #ffffff;">
+                <TextField fx:id="txtNickname" maxWidth="260.0" prefHeight="40.0" prefWidth="260.0" promptText="Escribe tu apodo..." style="-fx-background-radius: 20; -fx-padding: 10; -fx-background-color: #ffffff;">
                     <VBox.margin>
-                        <Insets bottom="30.0" />
+                        <Insets />
                     </VBox.margin>
                     <font>
                         <Font size="14.0" />
                     </font>
                 </TextField>
+            <Label fx:id="lblError" text="Introduce un apodo válido" textFill="RED" visible="false">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
                 <Button maxWidth="260.0" minHeight="45.0" mnemonicParsing="false" onAction="#crearSala" style="-fx-background-color: linear-gradient(to bottom, #f4c453, #c58f22); -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold; -fx-font-size: 16px;" text="CREAR SALA">
                     <VBox.margin>
                         <Insets bottom="15.0" />
@@ -87,6 +95,9 @@
                     <effect>
                         <DropShadow color="#00000080" offsetY="3.0" />
                     </effect>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
                 </Button>
             </children>
             <padding>

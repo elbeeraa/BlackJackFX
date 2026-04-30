@@ -5,14 +5,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #0b2b18; -fx-border-color: #d4af37; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.masanz.ut9.blackjackfx.LauncherController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #0b2b18; -fx-border-color: #d4af37; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.masanz.ut9.blackjackfx.controller.JoinGameController">
     <top>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
@@ -40,17 +42,17 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="596.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: #8b0000; -fx-background-radius: 10;" text="CANCELAR" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#cancelar" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: #8b0000; -fx-background-radius: 10;" text="CANCELAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="186.0" style="-fx-background-color: linear-gradient(to bottom, #f4c453, #c58f22); -fx-background-radius: 10;" text="UNIRME A SALA SELECCIONADA">
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="186.0" style="-fx-background-color: linear-gradient(to bottom, #f4c453, #c58f22); -fx-background-radius: 10;" text="UNIRME A SALA SELECCIONADA" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" style="-fx-background-radius: 10;" text="CREAR SALA">
+            <Button mnemonicParsing="false" onAction="#crearSala" prefHeight="40.0" prefWidth="130.0" style="-fx-background-radius: 10; -fx-background-color: linear-gradient(to bottom, #428bca, #2b669a);" text="CREAR SALA" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -59,19 +61,40 @@
       </HBox>
    </bottom>
    <center>
-      <TableView prefHeight="336.0" prefWidth="527.0" style="-fx-background-radius: 15;" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="163.0" text="Nombre de la sala" />
-          <TableColumn prefWidth="136.0" text="Jugadores" />
-            <TableColumn prefWidth="144.0" text="Privacidad" />
-            <TableColumn prefWidth="131.0" text="Ping" />
-        </columns>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <BorderPane.margin>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="78.0" prefWidth="596.0">
+               <children>
+                  <TextField fx:id="txtBusquedaSala" promptText="Busca la sala...">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#buscarSala" style="-fx-background-color: linear-gradient(to bottom, #5cb85c, #398439);" text="REFRESCAR" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <TableView fx:id="tablaSalas" prefHeight="336.0" prefWidth="537.0" style="-fx-background-radius: 15; -fx-background-color: #104c26; -fx-border-color: #d4af37; -fx-border-width: 3;">
+              <columns>
+                <TableColumn fx:id="tablaNombreSala" prefWidth="187.0" resizable="false" style="-fx-border-radius: 20;" text="Nombre de la sala" />
+                <TableColumn fx:id="tablaNumJugadores" prefWidth="123.0" resizable="false" text="Jugadores" />
+                  <TableColumn fx:id="tablaPrivacidad" prefWidth="151.0" resizable="false" text="Privacidad" />
+                  <TableColumn fx:id="tablaPing" prefWidth="134.0" resizable="false" text="Ping" />
+              </columns>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TableView>
+         </children>
+         <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </BorderPane.margin>
-      </TableView>
+         </padding>
+      </VBox>
    </center>
 </BorderPane>

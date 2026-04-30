@@ -5,5 +5,8 @@ module ed.masanz.ut9.blackjackfx {
 
 
     opens ed.masanz.ut9.blackjackfx to javafx.fxml;
+    opens ed.masanz.ut9.blackjackfx.model to javafx.base;
     exports ed.masanz.ut9.blackjackfx;
+    exports ed.masanz.ut9.blackjackfx.controller;
+    opens ed.masanz.ut9.blackjackfx.controller to javafx.fxml;
 }
