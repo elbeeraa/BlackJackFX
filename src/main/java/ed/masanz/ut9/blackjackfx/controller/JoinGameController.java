@@ -60,6 +60,11 @@ public class JoinGameController {
     }
 
     @FXML
+    void unirSala(ActionEvent event) {
+        NavigationService.getInstance().navigateTo("game.fxml");
+    }
+
+    @FXML
     void crearSala(ActionEvent event) {
         NavigationService.getInstance().navigateTo("host-config.fxml");
     }
