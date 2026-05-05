@@ -15,7 +15,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="115.0" prefWidth="896.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="21" textFill="WHITE">
+            <Label fx:id="lblPuntosTres" text="21" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -23,7 +23,7 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img12" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../images/3-c.PNG" />
                </image>
@@ -31,7 +31,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img11" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../images/1-c.PNG" />
                </image>
@@ -39,7 +39,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img10" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../images/1-t.PNG" />
                </image>
@@ -47,7 +47,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img9" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../images/7-t.PNG" />
                </image>
@@ -61,7 +61,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="130.0" prefWidth="896.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../images/10-p.PNG" />
                </image>
@@ -69,7 +69,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../images/1-t.PNG" />
                </image>
@@ -77,7 +77,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../../../../images/10-c.PNG" />
                </image>
@@ -85,7 +85,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../../../../images/12-p.PNG" />
                </image>
@@ -93,7 +93,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <Label text="21" textFill="WHITE">
+            <Label fx:id="lblPuntosUno" text="21" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -107,27 +107,27 @@
    <left>
       <Pane prefHeight="406.0" prefWidth="183.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="40.0" translateY="110.0">
+            <ImageView fx:id="img15" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="40.0" translateY="110.0">
                <image>
                   <Image url="@../../../../images/13-p.PNG" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="40.0">
+            <ImageView fx:id="img14" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="40.0">
                <image>
                   <Image url="@../../../../images/2-c.PNG" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="40.0" translateY="220.0">
+            <ImageView fx:id="img16" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="40.0" translateY="220.0">
                <image>
                   <Image url="@../../../../images/7-r.PNG" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="40.0" translateY="-110.0">
+            <ImageView fx:id="img13" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="40.0" translateY="-110.0">
                <image>
                   <Image url="@../../../../images/5-p.PNG" />
                </image>
             </ImageView>
-            <Label text="21" textFill="WHITE" translateX="75.0" translateY="350.0">
+            <Label fx:id="lblPuntosCuatro" text="21" textFill="WHITE" translateX="75.0" translateY="350.0">
                <font>
                   <Font size="25.0" />
                </font>
@@ -138,27 +138,27 @@
    <right>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="21" textFill="WHITE" translateX="90.0" translateY="-20.0">
+            <Label fx:id="lblPuntosDos" text="21" textFill="WHITE" translateX="90.0" translateY="-20.0">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="60.0">
+            <ImageView fx:id="img8" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="60.0">
                <image>
                   <Image url="@../../../../images/11-c.PNG" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="60.0" translateY="110.0">
+            <ImageView fx:id="img7" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="60.0" translateY="110.0">
                <image>
                   <Image url="@../../../../images/12-p.PNG" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="60.0" translateY="330.0">
+            <ImageView fx:id="img5" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="60.0" translateY="330.0">
                <image>
                   <Image url="@../../../../images/3-c.PNG" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="60.0" translateY="220.0">
+            <ImageView fx:id="img6" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" translateX="60.0" translateY="220.0">
                <image>
                   <Image url="@../../../../images/10-p.PNG" />
                </image>
@@ -171,7 +171,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="img17" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../images/9-t.PNG" />
                      </image>
@@ -179,7 +179,7 @@
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="img18" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../images/7-r.PNG" />
                      </image>
@@ -187,7 +187,7 @@
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="img19" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../images/5-c.PNG" />
                      </image>
@@ -195,7 +195,7 @@
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="img20" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../images/5-t.PNG" />
                      </image>
@@ -207,7 +207,7 @@
             </HBox>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="225.0" layoutY="-1.0" text="21" textFill="WHITE">
+                  <Label fx:id="lblPuntosBanca" layoutX="225.0" layoutY="-1.0" text="21" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -219,6 +219,11 @@
                   </Label>
                   <Button layoutX="51.0" layoutY="43.0" mnemonicParsing="false" prefWidth="79.0" text="PLANTARSE" translateX="75.0" translateY="70.0" />
                   <Button layoutX="256.0" layoutY="113.0" mnemonicParsing="false" text="OTRA CARTA" />
+                  <Label fx:id="lblPerdido" text="HAS PERDIDO" textFill="WHITE" translateX="160.0" translateY="65.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>
