@@ -52,8 +52,20 @@ public class JoinGameController {
 
     @FXML
     void buscarSala(ActionEvent event) {
-       // if(txtBusquedaSala != null)
-        //TODO QUE SALGAN LAS SALAS QUE TIENE EL SERVIDOR CON EL NOMBRE PUESTO EN TXT BUSQUEDA
+        if(txtBusquedaSala != null && !txtBusquedaSala.getText().isEmpty()){
+            String textoBusqueda = txtBusquedaSala.getText().toLowerCase();
+            ObservableList<Sala> salasFiltradas = FXCollections.observableArrayList();
+
+            for (Sala sala : listaSalas) {
+                if (sala.getNombreSala().toLowerCase().contains(textoBusqueda)) {
+                    salasFiltradas.add(sala);
+                }
+            }
+
+            tablaSalas.setItems(salasFiltradas);
+        } else {
+            tablaSalas.setItems(listaSalas);
+        }
     }
 
     @FXML

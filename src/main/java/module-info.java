@@ -3,7 +3,7 @@ module ed.masanz.ut9.blackjackfx {
     requires javafx.fxml;
     requires javafx.graphics;
     requires javafx.base;
-
+   
 
 
     opens ed.masanz.ut9.blackjackfx to javafx.fxml;

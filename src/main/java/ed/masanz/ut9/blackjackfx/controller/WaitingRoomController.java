@@ -3,6 +3,7 @@ package ed.masanz.ut9.blackjackfx.controller;
 import ed.masanz.ut9.blackjackfx.model.Jugador;
 import ed.masanz.ut9.blackjackfx.model.Sala;
 import ed.masanz.ut9.blackjackfx.model.UserSession;
+import ed.masanz.ut9.blackjackfx.service.NavigationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.Iterator;
 
 public class WaitingRoomController {
 
@@ -52,15 +55,21 @@ public class WaitingRoomController {
         listaJugadores = FXCollections.observableArrayList();
         tablaSalaEspera.setItems(listaJugadores);
 
-        // IMPORTANTE: hacer la tabla editable
-        tablaSalaEspera.setEditable(true);
-        columnaListo.setEditable(true);
-
     }
 
     @FXML
     void abandonarSala(ActionEvent event) {
-
+        String nombreUsuario = UserSession.getInstance().getNickname();
+        Iterator iterator = salaActual.getJugadoresEnSala().iterator();
+        while(iterator.hasNext()){
+            Jugador j = (Jugador) iterator.next();
+            if (nombreUsuario.equals(j.getNombre())) {
+                iterator.remove();
+                setSalaActual(null);
+                NavigationService.getInstance().navigateTo("join-game.fxml");
+                break;
+            }
+        }
     }
 
     @FXML
@@ -79,7 +88,7 @@ public class WaitingRoomController {
         for (Jugador j : salaActual.getJugadoresEnSala()) {
             if (nombreUsuario.equals(j.getNombre())) {
                 j.setListo(true);
-                System.out.println("✓ Jugador marcado como listo");
+                System.out.println("Jugador marcado como listo");
                 break;
             }
         }
