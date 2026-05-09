@@ -61,7 +61,12 @@ public class LauncherController {
 
     @FXML
     void unirmeSala(ActionEvent event) {
-        NavigationService.getInstance().navigateTo("join-game.fxml");
+        if (Validator.hashText(txtNickname)) {
+            getNickname();
+            NavigationService.getInstance().navigateTo("join-game.fxml");
+        } else {
+            lblError.setVisible(true);
+        }
     }
 
     private void getNickname(){

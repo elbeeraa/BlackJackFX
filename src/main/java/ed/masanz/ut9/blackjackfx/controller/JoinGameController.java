@@ -1,6 +1,8 @@
 package ed.masanz.ut9.blackjackfx.controller;
 
+import ed.masanz.ut9.blackjackfx.model.Jugador;
 import ed.masanz.ut9.blackjackfx.model.Sala;
+import ed.masanz.ut9.blackjackfx.model.UserSession;
 import ed.masanz.ut9.blackjackfx.service.NavigationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,9 +43,9 @@ public class JoinGameController {
         tablaPrivacidad.setCellValueFactory(new PropertyValueFactory<>("privacidad"));
 
         listaSalas = FXCollections.observableArrayList(
-                new Sala("Sala 1", 3, 50, "Publica"),
-                new Sala("Sala 2", 2, 30, "Privada"),
-                new Sala("Sala 3", 4, 70, "Publica")
+                new Sala(1,"Sala 1", 3, 50, "Publica"),
+                new Sala(2,"Sala 2", 3, 30, "Privada"),
+                new Sala(3,"Sala 3", 3, 70, "Publica")
         );
         tablaSalas.setItems(listaSalas);
     }
@@ -61,7 +63,29 @@ public class JoinGameController {
 
     @FXML
     void unirSala(ActionEvent event) {
-        NavigationService.getInstance().navigateTo("game.fxml");
+        if(!aniadirJugadorASalaSeleccionada()){
+            System.out.println("No se ha podido unir a la sala.");
+        }
+    }
+
+    private boolean aniadirJugadorASalaSeleccionada() {
+        Sala salaSeleccionada = tablaSalas.getSelectionModel().getSelectedItem();
+        if (salaSeleccionada != null && salaSeleccionada.getNumJugadores() < 4) {
+
+            String nombreJugador = UserSession.getInstance().getNickname();
+            salaSeleccionada.aniadirJugador(new Jugador(nombreJugador));
+
+            WaitingRoomController controlador = NavigationService.getInstance().navigateTo("waiting-room.fxml");
+            if(controlador != null) {
+                controlador.setSalaActual(salaSeleccionada);
+            }
+
+            System.out.println("Jugador añadido a la sala: " + salaSeleccionada.getNombreSala());
+            return true;
+        } else {
+            System.out.println("No se ha seleccionado ninguna sala.");
+            return false;
+        }
     }
 
     @FXML
