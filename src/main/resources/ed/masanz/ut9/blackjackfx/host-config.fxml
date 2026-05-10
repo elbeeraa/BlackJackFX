@@ -16,7 +16,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: #0b2b18; -fx-border-color: #d4af37; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.masanz.ut9.blackjackfx.controller.HostConfigController">
     <center>
-        <VBox alignment="CENTER" maxWidth="450.0" prefHeight="450.0" prefWidth="450.0" spacing="15.0" style="-fx-background-color: #104c26; -fx-border-color: #d4af37; -fx-border-radius: 15; -fx-background-radius: 15; -fx-border-width: 2;" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" maxWidth="450.0" prefHeight="368.0" prefWidth="450.0" spacing="15.0" style="-fx-background-color: #104c26; -fx-border-color: #d4af37; -fx-border-radius: 15; -fx-background-radius: 15; -fx-border-width: 2;" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
             </padding>
@@ -69,24 +69,19 @@
                     </children>
                 </VBox>
                 <VBox spacing="5.0" />
-                <VBox alignment="CENTER_LEFT" spacing="8.0">
-                    <children>
-                        <Label text="IMAGEN DE LA SALA" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" spacing="15.0">
-                            <children>
-                        <ImageView fx:id="imagen" fitHeight="91.0" fitWidth="102.0" onMouseClicked="#cambiarImagen" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../images/imagen_defecto.png" />
-                           </image>
-                        </ImageView>
-                            </children>
-                        </HBox>
-                    </children>
-                </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="lblContra" text="CONTRASEÑA" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="txtContra" prefHeight="35.0" prefWidth="386.0" promptText="Inserta  la contraseña..." style="-fx-padding: 8; -fx-background-radius: 10;" />
+               </children>
+            </VBox>
             <Label fx:id="lblError" text="Por favor , completa todos los campos" textFill="RED" visible="false">
                <font>
                   <Font name="System Bold" size="13.0" />

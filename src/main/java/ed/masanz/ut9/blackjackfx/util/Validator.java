@@ -16,10 +16,14 @@ public class Validator {
         if(txtNumeroJugadores == null || txtNumeroJugadores.getText().isEmpty()){
             return false;
         }
-        int numero = Integer.parseInt(txtNumeroJugadores.getText());
-        if(numero < 5 && numero > 1){
-            return true;
-        } else {
+        try {
+            int numero = Integer.parseInt(txtNumeroJugadores.getText());
+            if(numero < 5 && numero > 1){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NumberFormatException e) {
             return false;
         }
     }

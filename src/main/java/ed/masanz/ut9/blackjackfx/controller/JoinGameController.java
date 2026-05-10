@@ -4,14 +4,17 @@ import ed.masanz.ut9.blackjackfx.model.Jugador;
 import ed.masanz.ut9.blackjackfx.model.Sala;
 import ed.masanz.ut9.blackjackfx.model.UserSession;
 import ed.masanz.ut9.blackjackfx.service.NavigationService;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 public class JoinGameController {
@@ -26,7 +29,7 @@ public class JoinGameController {
     private TableColumn<Sala, Integer> tablaNumJugadores;
 
     @FXML
-    private TableColumn<Sala, Integer> tablaPing;
+    private TableColumn<Sala, String> tablaContra;
 
     @FXML
     private TableColumn<Sala, String> tablaPrivacidad;
@@ -39,14 +42,14 @@ public class JoinGameController {
     public void initialize() {
         tablaNombreSala.setCellValueFactory(new PropertyValueFactory<>("nombreSala"));
         tablaNumJugadores.setCellValueFactory(new PropertyValueFactory<>("numJugadores"));
-        tablaPing.setCellValueFactory(new PropertyValueFactory<>("ping"));
         tablaPrivacidad.setCellValueFactory(new PropertyValueFactory<>("privacidad"));
 
         listaSalas = FXCollections.observableArrayList(
-                new Sala(1,"Sala 1", 3, 50, "Publica"),
-                new Sala(2,"Sala 2", 3, 30, "Privada"),
-                new Sala(3,"Sala 3", 3, 70, "Publica")
+                new Sala(1,"Sala 1", 3, null, "Publica", new ArrayList<>(List.of(new Jugador[]{new Jugador("Ana"), new Jugador("Pedro"), new Jugador("Blanca")}))),
+                new Sala(2,"Sala 2", 3, "0000", "Privada", new ArrayList<>(List.of(new Jugador[]{new Jugador("Valentina"), new Jugador("Bea")}))),
+                new Sala(3,"Sala 3", 3, null, "Publica", new ArrayList<>(List.of(new Jugador[]{new Jugador("Popo")})))
         );
+
         tablaSalas.setItems(listaSalas);
     }
 
@@ -82,22 +85,68 @@ public class JoinGameController {
 
     private boolean aniadirJugadorASalaSeleccionada() {
         Sala salaSeleccionada = tablaSalas.getSelectionModel().getSelectedItem();
-        if (salaSeleccionada != null && salaSeleccionada.getNumJugadores() < 4) {
 
-            String nombreJugador = UserSession.getInstance().getNickname();
-            salaSeleccionada.aniadirJugador(new Jugador(nombreJugador));
-
-            WaitingRoomController controlador = NavigationService.getInstance().navigateTo("waiting-room.fxml");
-            if(controlador != null) {
-                controlador.setSalaActual(salaSeleccionada);
-            }
-
-            System.out.println("Jugador añadido a la sala: " + salaSeleccionada.getNombreSala());
-            return true;
-        } else {
+        if (salaSeleccionada == null) {
             System.out.println("No se ha seleccionado ninguna sala.");
             return false;
         }
+
+        if (salaSeleccionada.getNumJugadores() >= 4) {
+            System.out.println("La sala está llena.");
+            return false;
+        }
+
+        if(salaSeleccionada.getPrivacidad().equals("Privada")){
+            Dialog<String> dialog = new Dialog<>();
+            dialog.setTitle("Contraseña requerida");
+            dialog.setHeaderText("Contraseña: ");
+
+            ButtonType botonUnirse = new ButtonType("Unirme", ButtonBar.ButtonData.OK_DONE);
+            ButtonType botonCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+            dialog.getDialogPane().getButtonTypes().addAll(botonUnirse, botonCancelar);
+
+            PasswordField contraIntroducida = new PasswordField();
+            contraIntroducida.setPromptText("Contraseña");
+            dialog.getDialogPane().setContent(contraIntroducida);
+
+            Platform.runLater(contraIntroducida::requestFocus);
+
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == botonUnirse) {
+                    return contraIntroducida.getText();
+                }
+                return null;
+            });
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isEmpty()) {
+                return false;
+            }
+
+            String introducida = result.get();
+            String correcta = salaSeleccionada.getContra();
+
+            if (correcta == null) correcta = "";
+            if (!correcta.equals(introducida)) {
+//                Alert alerta = new Alert(Alert.AlertType.ERROR);
+//                alerta.setTitle("Contraseña incorrecta");
+//                alerta.setHeaderText(null);
+//                alerta.setContentText("La contraseña no es correcta. No puedes unirte a la sala.");
+//                alerta.showAndWait();
+                return false;
+            }
+        }
+
+        String nombreJugador = UserSession.getInstance().getNickname();
+        salaSeleccionada.aniadirJugador(new Jugador(nombreJugador));
+
+        WaitingRoomController controlador = NavigationService.getInstance().navigateTo("waiting-room.fxml");
+        if(controlador != null) {
+            controlador.setSalaActual(salaSeleccionada);
+        }
+
+        System.out.println("Jugador añadido a la sala: " + salaSeleccionada.getNombreSala());
+        return true;
     }
 
     @FXML

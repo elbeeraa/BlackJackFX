@@ -6,7 +6,7 @@ import java.util.List;
 public class Sala {
     private String nombreSala;
     private int numJugadores;
-    private int ping;
+    private String contra;
     private String privacidad;
 
     //TODO AÑADIR ID DE LA SALA PARA PODER IDENTIFICARLA CUANDO SE QUIERA UNIR A ELLA
@@ -16,10 +16,10 @@ public class Sala {
     //TODO poner solo String con el nombre o el objeto jugador directamente?
     private List<Jugador> jugadoresEnSala;
 
-    public Sala(String nombreSala, int numJugadores, int ping, String privacidad) {
+    public Sala(String nombreSala, int numJugadores, String contra, String privacidad) {
         this.nombreSala = nombreSala;
         this.numJugadores = numJugadores;
-        this.ping = ping;
+        this.contra = contra;
         this.privacidad = privacidad;
         this.jugadoresEnSala = new ArrayList<>();
         //AQUI HE AÑADIDO JUGADORES PARA PRUEBA
@@ -29,17 +29,15 @@ public class Sala {
         this.numJugadores = this.jugadoresEnSala.size();
     }
         //TODO CONSTRUCTOR CON ID PARA PODER CREAR LAS SALAS CON ID
-    public Sala(int id,String nombreSala, int numJugadores, int ping, String privacidad) {
+    public Sala(int id,String nombreSala, int numJugadores, String contra, String privacidad, List<Jugador> jugadoresEnSala) {
         this.idSala = id;
         this.nombreSala = nombreSala;
         this.numJugadores = numJugadores;
-        this.ping = ping;
+        this.contra = contra;
         this.privacidad = privacidad;
         this.jugadoresEnSala = new ArrayList<>();
         //AQUI HE AÑADIDO JUGADORES PARA PRUEBA
-        this.jugadoresEnSala.add(new Jugador("Ana"));
-        this.jugadoresEnSala.add(new Jugador("Luis"));
-        this.jugadoresEnSala.add(new Jugador("Marta"));
+        this.jugadoresEnSala = jugadoresEnSala;
         this.numJugadores = this.jugadoresEnSala.size();
     }
 
@@ -75,12 +73,12 @@ public class Sala {
         this.numJugadores = numJugadores;
     }
 
-    public int getPing() {
-        return ping;
+    public String getContra() {
+        return contra;
     }
 
-    public void setPing(int ping) {
-        this.ping = ping;
+    public void setContra(String contra) {
+        this.contra = contra;
     }
 
     public String getPrivacidad() {
