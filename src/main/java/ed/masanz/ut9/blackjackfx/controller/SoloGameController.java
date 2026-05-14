@@ -3,13 +3,16 @@ package ed.masanz.ut9.blackjackfx.controller;
 import ed.masanz.ut9.blackjackfx.model.Jugador;
 import ed.masanz.ut9.blackjackfx.model.UserSession;
 import ed.masanz.ut9.blackjackfx.service.NavigationService;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SoloGameController {
 
@@ -74,36 +77,111 @@ public class SoloGameController {
     private Label lblPuntosJugador;
 
     private Jugador jugadorActual;
+    private int dineroApostar;
+
+    private final List<String> mazoJugador = new ArrayList<>();
+    private final List<String> mazoBanca = new ArrayList<>();
+    private int indiceMazoJugador = 0;
+    private int indiceMazoBanca = 0;
+    private int puntosJugador = 0;
+    private int puntosBanca = 0;
+//    private boolean rondaActiva = false;
 
     @FXML
     private void initialize() {
-        inicializarTodo();
+        inicializarValores();
     }
 
-    private void inicializarTodo() {
-        bancaCarta1.setVisible(false);
-        bancaCarta2.setVisible(false);
-        bancaCarta3.setVisible(false);
-        bancaCarta4.setVisible(false);
-
-        jugadorCarta1.setVisible(false);
-        jugadorCarta2.setVisible(false);
-        jugadorCarta3.setVisible(false);
-        jugadorCarta4.setVisible(false);
-
-        cjtoGanarPerder.setVisible(false);
-        cjtoDinero.setVisible(true);
-        cjtoHacer.setVisible(false);
-
+    private void prepararNuevaRonda() {
+        lblPuntosBanca.setVisible(true);
         lblPuntosBanca.setText("0");
+        lblPuntosJugador.setVisible(true);
         lblPuntosJugador.setText("0");
 
+       // aniadirCartaMazoJugador();
+
+        int numRandom = (int) (Math.random() * 13) + 1;
+        int numRandomPalo = (int) (Math.random() * 4) + 1;
+        switch (numRandomPalo) {
+            case 1 -> mazoJugador.add(numRandom + "-c");
+            case 2 -> mazoJugador.add(numRandom + "-p");
+            case 3 -> mazoJugador.add(numRandom + "-r");
+            case 4 -> mazoJugador.add(numRandom + "-t");
+        }
+
+    }
+
+    private void juego() {
+//        while(true){
+//            //1. El jugador apuesta
+        prepararNuevaRonda();
+//            //2. Se reparten las cartas
+//        while(cartasJugador < 4)
+//        repartirCartas();
+//            //3. El jugador juega su turno
+//        turnoJugador();
+//            //4. La banca juega su turno
+//        turnoBanca();
+//            //5. Se muestra el resultado
+//        verificarResultado();
+//        elegirDecision();
+//        }
+    }
+
+    private void limpiarCartas() {
+        jugadorCarta1.setImage(null);
+        jugadorCarta2.setImage(null);
+        jugadorCarta3.setImage(null);
+        jugadorCarta4.setImage(null);
+        bancaCarta1.setImage(null);
+        bancaCarta2.setImage(null);
+        bancaCarta3.setImage(null);
+        bancaCarta4.setImage(null);
+    }
+
+    private void repartirCartas() {
+        //TODO HACER EL REPARTO DE CARTAS, PONER LAS IMAGENES Y LOS PUNTOS
+        lblPuntosJugador.setVisible(true);
+        lblPuntosBanca.setVisible(true);
+    }
+
+    private void verificarApuesta(int dineroApostar) {
+        if(jugadorActual.getSaldo() < 50){
+            //TODO ENSEÑAR LABEL NO TIENES DINERO SUFICIENTE PARA APOSTAR
+        } else {
+            jugadorActual.setSaldo(jugadorActual.getSaldo() - dineroApostar);
+            cjtoDinero.setVisible(false);
+            //TODO HACER LA IMAGEN Y PONERLA DEPENDIENDO DE CUAL SEA
+            Image imagenApuesta = new Image(getClass().getResourceAsStream("/ed/masanz/ut9/blackjackfx/images/" + dineroApostar + ".png"));
+            imgApostado.setImage(imagenApuesta);
+            juego();
+        }
+    }
+
+    private void inicializarValores() {
         String nick = UserSession.getInstance().getNickname();
         if (nick != null) {
             jugadorActual = (new Jugador(nick));
             lblDineroTotal.textProperty().bind(jugadorActual.saldoProperty().asString());
         }
+    }
 
+    @FXML
+    void apostar100(ActionEvent event) {
+        dineroApostar = 100;
+        verificarApuesta(dineroApostar);
+    }
+
+    @FXML
+    void apostar150(ActionEvent event) {
+        dineroApostar = 150;
+        verificarApuesta(dineroApostar);
+    }
+
+    @FXML
+    void apostar50(ActionEvent event) {
+        dineroApostar = 50;
+        verificarApuesta(dineroApostar);
     }
 
     @FXML

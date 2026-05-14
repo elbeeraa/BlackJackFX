@@ -56,7 +56,12 @@ public class LauncherController {
 
     @FXML
     void jugarSolitario(ActionEvent event) {
-//        NavigationService.getInstance().navigateTo("solo-game.fxml");
+        if (Validator.hashText(txtNickname)) {
+            getNickname();
+            NavigationService.getInstance().navigateTo("solo-game.fxml");
+        } else {
+            lblError.setVisible(true);
+        }
     }
 
     @FXML

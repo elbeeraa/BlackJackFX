@@ -32,7 +32,7 @@
                   <Insets right="100.0" />
                </HBox.margin>
             </HBox>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="164.0" prefWidth="638.0">
+            <HBox alignment="BOTTOM_LEFT" prefHeight="164.0" prefWidth="638.0" visible="false">
                <children>
                   <ImageView fx:id="jugadorCarta1" fitHeight="150.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -87,7 +87,7 @@
       </HBox>
    </bottom>
    <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" visible="false" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="lblPuntosBanca" text="21" textFill="WHITE">
                <font>
@@ -167,7 +167,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="cjtoDinero" alignment="CENTER" layoutY="100.0" prefHeight="200.0" prefWidth="900.0" visible="false">
+            <VBox fx:id="cjtoDinero" alignment="CENTER" layoutY="100.0" prefHeight="200.0" prefWidth="900.0">
                <children>
                   <Label text="CUANTO QUIERES APOSTAR?" textFill="WHITE">
                      <font>
@@ -176,7 +176,7 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btn50" mnemonicParsing="false" text="50">
+                        <Button fx:id="btn50" mnemonicParsing="false" onAction="#apostar50" text="50">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -187,7 +187,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="btn100" mnemonicParsing="false" text="100">
+                        <Button fx:id="btn100" mnemonicParsing="false" onAction="#apostar100" text="100">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -198,7 +198,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="btn150" mnemonicParsing="false" text="150">
+                        <Button fx:id="btn150" mnemonicParsing="false" onAction="#apostar150" text="150">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -213,7 +213,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="cjtoGanarPerder" alignment="CENTER" layoutY="100.0" prefHeight="200.0" prefWidth="900.0">
+            <VBox fx:id="cjtoGanarPerder" alignment="CENTER" layoutY="100.0" prefHeight="200.0" prefWidth="900.0" visible="false">
                <children>
                   <Label fx:id="lblPerdido" prefHeight="45.0" prefWidth="311.0" text="OH NO, HAS PERDIDO " textFill="WHITE">
                      <font>
@@ -247,7 +247,7 @@
                   </HBox>
                </children>
             </VBox>
-            <ImageView fx:id="imgApostado" fitHeight="187.0" fitWidth="200.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true" translateX="350.0" translateY="120.0" />
+            <ImageView fx:id="imgApostado" fitHeight="96.0" fitWidth="98.0" layoutX="400.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" translateX="350.0" translateY="120.0" />
          </children>
       </Pane>
    </center>
