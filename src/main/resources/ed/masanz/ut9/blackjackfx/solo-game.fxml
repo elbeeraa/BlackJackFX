@@ -32,9 +32,9 @@
                   <Insets right="100.0" />
                </HBox.margin>
             </HBox>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="164.0" prefWidth="638.0" visible="false">
+            <HBox alignment="BOTTOM_LEFT" prefHeight="164.0" prefWidth="638.0">
                <children>
-                  <ImageView fx:id="jugadorCarta1" fitHeight="150.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="jugadorCarta1" fitHeight="150.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../../images/10-p.PNG" />
                      </image>
@@ -42,7 +42,7 @@
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="jugadorCarta2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="jugadorCarta2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../../images/1-t.PNG" />
                      </image>
@@ -50,7 +50,7 @@
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="jugadorCarta3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="jugadorCarta3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../../images/10-c.PNG" />
                      </image>
@@ -58,7 +58,7 @@
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="jugadorCarta4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="jugadorCarta4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../../images/12-p.PNG" />
                      </image>
@@ -68,7 +68,7 @@
                   </ImageView>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblPuntosJugador" text="21" textFill="WHITE">
+                        <Label fx:id="lblPuntosJugador" text="21" textFill="WHITE" visible="false">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -87,9 +87,9 @@
       </HBox>
    </bottom>
    <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" visible="false" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblPuntosBanca" text="21" textFill="WHITE">
+            <Label fx:id="lblPuntosBanca" text="21" textFill="WHITE" visible="false">
                <font>
                   <Font size="25.0" />
                </font>
@@ -97,7 +97,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <ImageView fx:id="bancaCarta1" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="bancaCarta1" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../../../../images/9-t.PNG" />
                </image>
@@ -105,7 +105,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="bancaCarta2" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="bancaCarta2" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../../../../images/7-r.PNG" />
                </image>
@@ -113,7 +113,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="bancaCarta3" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="bancaCarta3" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../../../../images/5-c.PNG" />
                </image>
@@ -121,7 +121,7 @@
                   <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="bancaCarta4" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="bancaCarta4" fitHeight="110.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../../../../images/5-t.PNG" />
                </image>

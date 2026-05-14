@@ -98,17 +98,49 @@ public class SoloGameController {
         lblPuntosJugador.setVisible(true);
         lblPuntosJugador.setText("0");
 
-       // aniadirCartaMazoJugador();
+        aniadirCartaMazo(mazoJugador, indiceMazoJugador, jugadorCarta1);
+        jugadorCarta1.setVisible(true);
+        aniadirCartaMazo(mazoJugador, indiceMazoJugador, jugadorCarta2);
+        jugadorCarta2.setVisible(true);
 
+        aniadirCartaMazo(mazoBanca, indiceMazoBanca, bancaCarta1);
+        bancaCarta1.setVisible(true);
+
+        puntosJugador = calcularPuntos(mazoJugador);
+        puntosBanca = calcularPuntos(mazoBanca);
+        lblPuntosBanca.setText(String.valueOf(puntosBanca));
+        lblPuntosJugador.setText(String.valueOf(puntosJugador));
+
+        cjtoHacer.setVisible(true);
+
+    }
+
+
+    private int calcularPuntos(List<String> mazoJugador) {
+        int puntos = 0;
+        for (String carta : mazoJugador) {
+            String valorCarta = carta.split("-")[0];
+            if (valorCarta.equals("11") || valorCarta.equals("12") || valorCarta.equals("13")) {
+                puntos += 10;
+            } else {
+                puntos += Integer.parseInt(valorCarta);
+            }
+        }
+        return puntos;
+    }
+
+    private void aniadirCartaMazo(List<String> mazo, int indiceMazo, ImageView cartaView) {
         int numRandom = (int) (Math.random() * 13) + 1;
         int numRandomPalo = (int) (Math.random() * 4) + 1;
         switch (numRandomPalo) {
-            case 1 -> mazoJugador.add(numRandom + "-c");
-            case 2 -> mazoJugador.add(numRandom + "-p");
-            case 3 -> mazoJugador.add(numRandom + "-r");
-            case 4 -> mazoJugador.add(numRandom + "-t");
+            case 1 -> mazo.add(numRandom + "-c");
+            case 2 -> mazo.add(numRandom + "-p");
+            case 3 -> mazo.add(numRandom + "-r");
+            case 4 -> mazo.add(numRandom + "-t");
         }
-
+        Image image = new Image(getClass().getResourceAsStream("/images/" + mazo.get(indiceMazo) + ".png"));
+        indiceMazo++;
+        cartaView.setImage(image);
     }
 
     private void juego() {
@@ -152,7 +184,7 @@ public class SoloGameController {
             jugadorActual.setSaldo(jugadorActual.getSaldo() - dineroApostar);
             cjtoDinero.setVisible(false);
             //TODO HACER LA IMAGEN Y PONERLA DEPENDIENDO DE CUAL SEA
-            Image imagenApuesta = new Image(getClass().getResourceAsStream("/ed/masanz/ut9/blackjackfx/images/" + dineroApostar + ".png"));
+            Image imagenApuesta = new Image(getClass().getResourceAsStream("/images/" + dineroApostar + ".png"));
             imgApostado.setImage(imagenApuesta);
             juego();
         }
