@@ -11,59 +11,75 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #0b2b18; -fx-border-color: #d4af37; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.masanz.ut9.blackjackfx.controller.GameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #0b2b18; -fx-border-color: #d4af37; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ed.masanz.ut9.blackjackfx.controller.SoloGameController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="130.0" prefWidth="896.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="164.0" prefWidth="131.0">
                <children>
-                  <Label text="0" textFill="WHITE">
+                  <Label fx:id="lblDineroTotal" text="0" textFill="WHITE">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label text="€" textFill="WHITE">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
                </children>
+               <HBox.margin>
+                  <Insets right="100.0" />
+               </HBox.margin>
             </HBox>
-            <ImageView fx:id="jugadorCarta1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../images/10-p.PNG" />
-               </image>
-               <HBox.margin>
-                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="jugadorCarta2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../images/1-t.PNG" />
-               </image>
-               <HBox.margin>
-                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="jugadorCarta3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../images/10-c.PNG" />
-               </image>
-               <HBox.margin>
-                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="jugadorCarta4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../images/12-p.PNG" />
-               </image>
-               <HBox.margin>
-                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-               </HBox.margin>
-            </ImageView>
-            <Label fx:id="lblPuntosJugador" text="21" textFill="WHITE">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="164.0" prefWidth="638.0">
+               <children>
+                  <ImageView fx:id="jugadorCarta1" fitHeight="150.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/10-p.PNG" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="jugadorCarta2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/1-t.PNG" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="jugadorCarta3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/10-c.PNG" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="jugadorCarta4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/12-p.PNG" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="lblPuntosJugador" text="21" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
          </children>
          <BorderPane.margin>
             <Insets bottom="15.0" />
@@ -197,7 +213,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="cjtoGanar" alignment="CENTER" layoutY="100.0" prefHeight="200.0" prefWidth="900.0">
+            <VBox fx:id="cjtoGanarPerder" alignment="CENTER" layoutY="100.0" prefHeight="200.0" prefWidth="900.0">
                <children>
                   <Label fx:id="lblPerdido" prefHeight="45.0" prefWidth="311.0" text="OH NO, HAS PERDIDO " textFill="WHITE">
                      <font>
