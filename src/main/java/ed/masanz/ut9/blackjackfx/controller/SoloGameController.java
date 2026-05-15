@@ -64,6 +64,9 @@ public class SoloGameController {
     @FXML
     private Label lblPuntosJugador;
 
+    @FXML
+    private ImageView videoWin;
+
     private Jugador jugadorActual;
     private int dineroApostar;
 
@@ -262,6 +265,7 @@ public class SoloGameController {
             cjtoFinal.setVisible(true);
             lblFinal.setText("Has ganado");
             reproducir(sonidoGanar);
+            videoWin.setVisible(true);
             jugadorActual.setSaldo(jugadorActual.getSaldo() + dineroApostar * 2);
         } else if (puntosJugador == puntosBanca) {
             cjtoHacer.setVisible(false);

@@ -240,6 +240,11 @@
                         </Button>
                      </children>
                   </HBox>
+                  <ImageView fx:id="videoWin" fitHeight="700.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" translateY="-200.0" visible="false">
+                     <image>
+                        <Image url="@../../../../videos/confetti.gif" />
+                     </image>
+                  </ImageView>
                </children>
             </VBox>
             <ImageView fx:id="imgApostado" fitHeight="96.0" fitWidth="98.0" layoutX="400.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" translateX="350.0" translateY="120.0" />
