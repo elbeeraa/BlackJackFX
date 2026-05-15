@@ -3,6 +3,7 @@ package ed.masanz.ut9.blackjackfx.controller;
 import ed.masanz.ut9.blackjackfx.model.Jugador;
 import ed.masanz.ut9.blackjackfx.model.UserSession;
 import ed.masanz.ut9.blackjackfx.service.NavigationService;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -89,7 +90,7 @@ public class SoloGameController {
 
     @FXML
     private void initialize() {
-        inicializarValores();
+        inicializarValoresJugador();
     }
 
     private void prepararNuevaRonda() {
@@ -98,12 +99,12 @@ public class SoloGameController {
         lblPuntosJugador.setVisible(true);
         lblPuntosJugador.setText("0");
 
-        aniadirCartaMazo(mazoJugador, indiceMazoJugador, jugadorCarta1);
+        aniadirCartaMazo(mazoJugador, jugadorCarta1);
         jugadorCarta1.setVisible(true);
-        aniadirCartaMazo(mazoJugador, indiceMazoJugador, jugadorCarta2);
+        aniadirCartaMazo(mazoJugador, jugadorCarta2);
         jugadorCarta2.setVisible(true);
 
-        aniadirCartaMazo(mazoBanca, indiceMazoBanca, bancaCarta1);
+        aniadirCartaMazo(mazoBanca, bancaCarta1);
         bancaCarta1.setVisible(true);
 
         puntosJugador = calcularPuntos(mazoJugador);
@@ -122,14 +123,16 @@ public class SoloGameController {
             String valorCarta = carta.split("-")[0];
             if (valorCarta.equals("11") || valorCarta.equals("12") || valorCarta.equals("13")) {
                 puntos += 10;
-            } else {
+            } else if(valorCarta.equals("1") && puntos <= 10){
+                puntos += 11;
+            } else{
                 puntos += Integer.parseInt(valorCarta);
             }
         }
         return puntos;
     }
 
-    private void aniadirCartaMazo(List<String> mazo, int indiceMazo, ImageView cartaView) {
+    private void aniadirCartaMazo(List<String> mazo, ImageView cartaView) {
         int numRandom = (int) (Math.random() * 13) + 1;
         int numRandomPalo = (int) (Math.random() * 4) + 1;
         switch (numRandomPalo) {
@@ -138,8 +141,7 @@ public class SoloGameController {
             case 3 -> mazo.add(numRandom + "-r");
             case 4 -> mazo.add(numRandom + "-t");
         }
-        Image image = new Image(getClass().getResourceAsStream("/images/" + mazo.get(indiceMazo) + ".png"));
-        indiceMazo++;
+        Image image = new Image(getClass().getResourceAsStream("/images/" + mazo.get(mazo.size() - 1) + ".png"));
         cartaView.setImage(image);
     }
 
@@ -160,22 +162,6 @@ public class SoloGameController {
 //        }
     }
 
-    private void limpiarCartas() {
-        jugadorCarta1.setImage(null);
-        jugadorCarta2.setImage(null);
-        jugadorCarta3.setImage(null);
-        jugadorCarta4.setImage(null);
-        bancaCarta1.setImage(null);
-        bancaCarta2.setImage(null);
-        bancaCarta3.setImage(null);
-        bancaCarta4.setImage(null);
-    }
-
-    private void repartirCartas() {
-        //TODO HACER EL REPARTO DE CARTAS, PONER LAS IMAGENES Y LOS PUNTOS
-        lblPuntosJugador.setVisible(true);
-        lblPuntosBanca.setVisible(true);
-    }
 
     private void verificarApuesta(int dineroApostar) {
         if(jugadorActual.getSaldo() < 50){
@@ -190,7 +176,7 @@ public class SoloGameController {
         }
     }
 
-    private void inicializarValores() {
+    private void inicializarValoresJugador() {
         String nick = UserSession.getInstance().getNickname();
         if (nick != null) {
             jugadorActual = (new Jugador(nick));
@@ -218,12 +204,73 @@ public class SoloGameController {
 
     @FXML
     void otraCarta(ActionEvent event) {
+        if(mazoJugador.size() < 4){
+            aniadirCartaMazo(mazoJugador, jugadorCarta3);
+            jugadorCarta3.setVisible(true);
+            puntosJugador = calcularPuntos(mazoJugador);
+            lblPuntosJugador.setText(String.valueOf(puntosJugador));
+        } else if(mazoJugador.size() == 4){
+            aniadirCartaMazo(mazoJugador, jugadorCarta4);
+            jugadorCarta4.setVisible(true);
+            puntosJugador = calcularPuntos(mazoJugador);
+            lblPuntosJugador.setText(String.valueOf(puntosJugador));
+        } else {
+            //TODO ENSEÑAR LABEL NO PUEDES PEDIR MAS CARTAS
+        }
+        comprobarPuntosJugador();
+    }
 
+    private void comprobarPuntosJugador() {
+        if(puntosJugador > 21){
+            cjtoHacer.setVisible(false);
+            cjtoGanarPerder.setVisible(true);
+            lblGanado.setVisible(false);
+            lblPerdido.setVisible(true);
+        } else if (puntosJugador < 21) {
+            cjtoHacer.setVisible(true);
+        }
     }
 
     @FXML
     void plantarse(ActionEvent event) {
+        turnoBanca();
+    }
 
+    private void turnoBanca() {
+        while(puntosBanca < 21){
+                if(mazoBanca.size() < 4){
+                    aniadirCartaMazo(mazoBanca, bancaCarta2);
+                    bancaCarta2.setVisible(true);
+                } else if(mazoBanca.size() == 4){
+                    aniadirCartaMazo(mazoBanca, bancaCarta3);
+                    bancaCarta3.setVisible(true);
+                } else {
+                    aniadirCartaMazo(mazoBanca, bancaCarta4);
+                    bancaCarta4.setVisible(true);
+                }
+                puntosBanca = calcularPuntos(mazoBanca);
+                lblPuntosBanca.setText(String.valueOf(puntosBanca));
+        }
+        compararPuntosBancaJugador();
+    }
+
+    private void compararPuntosBancaJugador() {
+        if(puntosJugador > puntosBanca || puntosBanca > 21){
+            cjtoHacer.setVisible(false);
+            cjtoGanarPerder.setVisible(true);
+            lblGanado.setVisible(true);
+            jugadorActual.setSaldo(jugadorActual.getSaldo() + dineroApostar * 2);
+        } else if (puntosJugador == puntosBanca) {
+            cjtoHacer.setVisible(false);
+            cjtoGanarPerder.setVisible(true);
+            lblGanado.setText("Empate");
+            lblGanado.setVisible(true);
+            jugadorActual.setSaldo(jugadorActual.getSaldo() + dineroApostar);
+        } else {
+            cjtoHacer.setVisible(false);
+            cjtoGanarPerder.setVisible(true);
+            lblPerdido.setVisible(true);
+        }
     }
 
     @FXML
@@ -233,7 +280,12 @@ public class SoloGameController {
 
     @FXML
     void volverJugar(ActionEvent event) {
-
+        mazoJugador.clear();
+        mazoBanca.clear();
+        puntosJugador = 0;
+        puntosBanca = 0;
+        cjtoDinero.setVisible(true);
+        cjtoGanarPerder.setVisible(false);
     }
 
 }
