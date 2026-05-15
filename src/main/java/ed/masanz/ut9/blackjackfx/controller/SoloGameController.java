@@ -30,19 +30,10 @@ public class SoloGameController {
     private ImageView bancaCarta4;
 
     @FXML
-    private Button btn100;
-
-    @FXML
-    private Button btn150;
-
-    @FXML
-    private Button btn50;
-
-    @FXML
     private VBox cjtoDinero;
 
     @FXML
-    private VBox cjtoGanarPerder;
+    private VBox cjtoFinal;
 
     @FXML
     private VBox cjtoHacer;
@@ -66,10 +57,7 @@ public class SoloGameController {
     private Label lblDineroTotal;
 
     @FXML
-    private Label lblGanado;
-
-    @FXML
-    private Label lblPerdido;
+    private Label lblFinal;
 
     @FXML
     private Label lblPuntosBanca;
@@ -146,22 +134,8 @@ public class SoloGameController {
     }
 
     private void juego() {
-//        while(true){
-//            //1. El jugador apuesta
         prepararNuevaRonda();
-//            //2. Se reparten las cartas
-//        while(cartasJugador < 4)
-//        repartirCartas();
-//            //3. El jugador juega su turno
-//        turnoJugador();
-//            //4. La banca juega su turno
-//        turnoBanca();
-//            //5. Se muestra el resultado
-//        verificarResultado();
-//        elegirDecision();
-//        }
     }
-
 
     private void verificarApuesta(int dineroApostar) {
         if(jugadorActual.getSaldo() < 50){
@@ -204,28 +178,31 @@ public class SoloGameController {
 
     @FXML
     void otraCarta(ActionEvent event) {
-        if(mazoJugador.size() < 4){
-            aniadirCartaMazo(mazoJugador, jugadorCarta3);
-            jugadorCarta3.setVisible(true);
-            puntosJugador = calcularPuntos(mazoJugador);
-            lblPuntosJugador.setText(String.valueOf(puntosJugador));
-        } else if(mazoJugador.size() == 4){
-            aniadirCartaMazo(mazoJugador, jugadorCarta4);
-            jugadorCarta4.setVisible(true);
-            puntosJugador = calcularPuntos(mazoJugador);
-            lblPuntosJugador.setText(String.valueOf(puntosJugador));
-        } else {
-            //TODO ENSEÑAR LABEL NO PUEDES PEDIR MAS CARTAS
+
+        switch (mazoJugador.size()) {
+            case 2 -> {
+                aniadirCartaMazo(mazoJugador, jugadorCarta3);
+                jugadorCarta3.setVisible(true);
+            }
+            case 3 -> {
+                aniadirCartaMazo(mazoJugador, jugadorCarta4);
+                jugadorCarta4.setVisible(true);
+            }
+            default -> {
+                //TODO ENSEÑAR LABEL NO PUEDES PEDIR MAS CARTAS
+            }
         }
+        puntosJugador = calcularPuntos(mazoJugador);
+        lblPuntosJugador.setText(String.valueOf(puntosJugador));
         comprobarPuntosJugador();
     }
 
     private void comprobarPuntosJugador() {
         if(puntosJugador > 21){
             cjtoHacer.setVisible(false);
-            cjtoGanarPerder.setVisible(true);
-            lblGanado.setVisible(false);
-            lblPerdido.setVisible(true);
+            cjtoFinal.setVisible(true);
+            lblFinal.setVisible(true);
+            lblFinal.setText("Has perdido");
         } else if (puntosJugador < 21) {
             cjtoHacer.setVisible(true);
         }
@@ -238,39 +215,44 @@ public class SoloGameController {
 
     private void turnoBanca() {
         while(puntosBanca < 17){
-                if(mazoBanca.size() < 4){
+            switch (mazoBanca.size()) {
+                case 1 -> {
                     aniadirCartaMazo(mazoBanca, bancaCarta2);
                     bancaCarta2.setVisible(true);
-                } else if(mazoBanca.size() == 4){
+                }
+                case 2 -> {
                     aniadirCartaMazo(mazoBanca, bancaCarta3);
                     bancaCarta3.setVisible(true);
-                } else {
+                }
+                case 3 -> {
                     aniadirCartaMazo(mazoBanca, bancaCarta4);
                     bancaCarta4.setVisible(true);
                 }
+            }
                 puntosBanca = calcularPuntos(mazoBanca);
                 lblPuntosBanca.setText(String.valueOf(puntosBanca));
         }
         compararPuntosBancaJugador();
     }
-    //TODO CAMBIAR EL LBL DE GANADO/PERDIDO/EMPATE POR UNO SOLO Y SOLO CAMBIARLE EL TEXTO EN SETTEXT
 
     private void compararPuntosBancaJugador() {
         if(puntosJugador > puntosBanca || puntosBanca > 21){
             cjtoHacer.setVisible(false);
-            cjtoGanarPerder.setVisible(true);
-            lblGanado.setVisible(true);
+            cjtoFinal.setVisible(true);
+//            lblFinal.setVisible(true);
+            lblFinal.setText("Has ganado");
             jugadorActual.setSaldo(jugadorActual.getSaldo() + dineroApostar * 2);
         } else if (puntosJugador == puntosBanca) {
             cjtoHacer.setVisible(false);
-            cjtoGanarPerder.setVisible(true);
-            lblGanado.setText("Empate");
-            lblGanado.setVisible(true);
+            cjtoFinal.setVisible(true);
+//            lblFinal.setVisible(true);
+            lblFinal.setText("Empate");
             jugadorActual.setSaldo(jugadorActual.getSaldo() + dineroApostar);
         } else {
             cjtoHacer.setVisible(false);
-            cjtoGanarPerder.setVisible(true);
-            lblPerdido.setVisible(true);
+            cjtoFinal.setVisible(true);
+//            lblFinal.setVisible(true);
+            lblFinal.setText("Has perdido");
         }
     }
 
@@ -283,7 +265,7 @@ public class SoloGameController {
     void volverJugar(ActionEvent event) {
         limpiarMesa();
         cjtoDinero.setVisible(true);
-        cjtoGanarPerder.setVisible(false);
+        cjtoFinal.setVisible(false);
     }
 
     private void limpiarMesa() {

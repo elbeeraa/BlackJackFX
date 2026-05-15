@@ -213,14 +213,9 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="cjtoGanarPerder" alignment="CENTER" layoutY="100.0" prefHeight="200.0" prefWidth="900.0" visible="false">
+            <VBox fx:id="cjtoFinal" alignment="CENTER" layoutY="100.0" prefHeight="200.0" prefWidth="900.0" visible="false">
                <children>
-                  <Label fx:id="lblPerdido" prefHeight="45.0" prefWidth="311.0" text="OH NO, HAS PERDIDO " textFill="WHITE">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblGanado" text="HAS GANADO!" textFill="WHITE">
+                  <Label fx:id="lblFinal" text="HAS GANADO!" textFill="WHITE">
                      <font>
                         <Font size="30.0" />
                      </font>
