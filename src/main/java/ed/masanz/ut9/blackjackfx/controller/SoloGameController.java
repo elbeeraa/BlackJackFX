@@ -3,6 +3,7 @@ package ed.masanz.ut9.blackjackfx.controller;
 import ed.masanz.ut9.blackjackfx.model.Jugador;
 import ed.masanz.ut9.blackjackfx.model.UserSession;
 import ed.masanz.ut9.blackjackfx.service.NavigationService;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,6 +104,14 @@ public class SoloGameController {
         if (clip != null) {
             clip.play();
         }
+    }
+
+    private void mostrarTemporal(ImageView imageView, double segundos) {
+        imageView.setVisible(true);
+
+        PauseTransition espera = new PauseTransition(Duration.seconds(segundos));
+        espera.setOnFinished(e -> imageView.setVisible(false));
+        espera.play();
     }
 
     private void prepararNuevaRonda() {
@@ -266,6 +276,7 @@ public class SoloGameController {
             lblFinal.setText("Has ganado");
             reproducir(sonidoGanar);
             videoWin.setVisible(true);
+            mostrarTemporal(videoWin, 5);
             jugadorActual.setSaldo(jugadorActual.getSaldo() + dineroApostar * 2);
         } else if (puntosJugador == puntosBanca) {
             cjtoHacer.setVisible(false);
