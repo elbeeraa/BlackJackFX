@@ -3,14 +3,13 @@ package ed.masanz.ut9.blackjackfx.controller;
 import ed.masanz.ut9.blackjackfx.model.Jugador;
 import ed.masanz.ut9.blackjackfx.model.UserSession;
 import ed.masanz.ut9.blackjackfx.service.NavigationService;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,15 +69,36 @@ public class SoloGameController {
 
     private final List<String> mazoJugador = new ArrayList<>();
     private final List<String> mazoBanca = new ArrayList<>();
-    private int indiceMazoJugador = 0;
-    private int indiceMazoBanca = 0;
     private int puntosJugador = 0;
     private int puntosBanca = 0;
-//    private boolean rondaActiva = false;
+
+    private AudioClip sonidoGanar;
+    private AudioClip sonidoPerder;
 
     @FXML
     private void initialize() {
         inicializarValoresJugador();
+        cargarSonidos();
+    }
+
+    private void cargarSonidos() {
+        sonidoGanar = crearAudioClipSeguro("/audios/win.wav");
+        sonidoPerder = crearAudioClipSeguro("/audios/lose.wav");
+    }
+
+    private AudioClip crearAudioClipSeguro(String ruta) {
+        var url = getClass().getResource(ruta);
+        if (url == null) {
+            System.err.println("No se encontro el sonido: " + ruta);
+            return null;
+        }
+        return new AudioClip(url.toExternalForm());
+    }
+
+    private void reproducir(AudioClip clip) {
+        if (clip != null) {
+            clip.play();
+        }
     }
 
     private void prepararNuevaRonda() {
@@ -203,6 +223,7 @@ public class SoloGameController {
             cjtoFinal.setVisible(true);
             lblFinal.setVisible(true);
             lblFinal.setText("Has perdido");
+            reproducir(sonidoPerder);
         } else if (puntosJugador < 21) {
             cjtoHacer.setVisible(true);
         }
@@ -239,20 +260,19 @@ public class SoloGameController {
         if(puntosJugador > puntosBanca || puntosBanca > 21){
             cjtoHacer.setVisible(false);
             cjtoFinal.setVisible(true);
-//            lblFinal.setVisible(true);
             lblFinal.setText("Has ganado");
+            reproducir(sonidoGanar);
             jugadorActual.setSaldo(jugadorActual.getSaldo() + dineroApostar * 2);
         } else if (puntosJugador == puntosBanca) {
             cjtoHacer.setVisible(false);
             cjtoFinal.setVisible(true);
-//            lblFinal.setVisible(true);
             lblFinal.setText("Empate");
             jugadorActual.setSaldo(jugadorActual.getSaldo() + dineroApostar);
         } else {
             cjtoHacer.setVisible(false);
             cjtoFinal.setVisible(true);
-//            lblFinal.setVisible(true);
             lblFinal.setText("Has perdido");
+            reproducir(sonidoPerder);
         }
     }
 
