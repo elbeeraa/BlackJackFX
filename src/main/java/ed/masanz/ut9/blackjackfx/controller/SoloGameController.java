@@ -237,7 +237,7 @@ public class SoloGameController {
     }
 
     private void turnoBanca() {
-        while(puntosBanca < 21){
+        while(puntosBanca < 17){
                 if(mazoBanca.size() < 4){
                     aniadirCartaMazo(mazoBanca, bancaCarta2);
                     bancaCarta2.setVisible(true);
@@ -253,6 +253,7 @@ public class SoloGameController {
         }
         compararPuntosBancaJugador();
     }
+    //TODO CAMBIAR EL LBL DE GANADO/PERDIDO/EMPATE POR UNO SOLO Y SOLO CAMBIARLE EL TEXTO EN SETTEXT
 
     private void compararPuntosBancaJugador() {
         if(puntosJugador > puntosBanca || puntosBanca > 21){
@@ -280,12 +281,26 @@ public class SoloGameController {
 
     @FXML
     void volverJugar(ActionEvent event) {
+        limpiarMesa();
+        cjtoDinero.setVisible(true);
+        cjtoGanarPerder.setVisible(false);
+    }
+
+    private void limpiarMesa() {
+        jugadorCarta1.setVisible(false);
+        jugadorCarta2.setVisible(false);
+        jugadorCarta3.setVisible(false);
+        jugadorCarta4.setVisible(false);
+        bancaCarta1.setVisible(false);
+        bancaCarta2.setVisible(false);
+        bancaCarta3.setVisible(false);
+        bancaCarta4.setVisible(false);
+        lblPuntosBanca.setVisible(false);
+        lblPuntosJugador.setVisible(false);
         mazoJugador.clear();
         mazoBanca.clear();
         puntosJugador = 0;
         puntosBanca = 0;
-        cjtoDinero.setVisible(true);
-        cjtoGanarPerder.setVisible(false);
     }
 
 }
